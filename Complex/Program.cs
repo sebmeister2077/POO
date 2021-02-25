@@ -13,6 +13,7 @@ namespace Complex
         static void Main(string[] args)
         {
             Console.WriteLine(new Complex("+8-3i")/new Complex("i"));
+            Console.WriteLine(new Complex(0,0).ToString());
             Console.ReadLine();
         }
     }
@@ -175,6 +176,8 @@ namespace Complex
                     str += "+" + im.ToString() + "i";
                 else
                     str += im.ToString() + "i";
+            if (str == "")//=0 si im=0
+                return "0";
             return str;
         }
         public static Complex Parse(string str)
