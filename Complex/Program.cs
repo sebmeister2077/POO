@@ -18,9 +18,16 @@ namespace Complex
     }
     class Complex
     {
-        double re, im;
+        private double re, im;
+
+        #region Constructors
         public Complex()
         { }
+        public Complex(double r, double i = 0)
+        {
+            this.im = i;
+            this.re = r;
+        }
         public Complex(string str)
         {
             try
@@ -52,7 +59,7 @@ namespace Complex
                 }
                         
             }
-            catch { Console.WriteLine("Error parsing string parameter to Complex"); }
+            catch { Console.WriteLine("Error parsing string parameter to Complex"); im = double.NaN; }
         }
         private double ParseImag(string str)
         {
@@ -71,11 +78,40 @@ namespace Complex
                 n= double.Parse(str.Substring(0, str.Length - 1));
             return n;
         }
-        public Complex(double r, double i=0)
+        #endregion
+        #region Properties
+        public double Imag
         {
-            this.im = i;
-            this.re = r;
+            get
+            {
+                return im;
+            }
+            set
+            {
+                im = value;
+            }
         }
+        public double Real
+        {
+            get
+            {
+                return re;
+            }
+            set
+            {
+                re = value;
+            }
+        }
+        public double Magnitude
+        {
+            get
+            {
+                return Complex.Abs(this);
+            }
+        }
+        #endregion
+
+        #region Operators
         public static Complex operator +(Complex c1, Complex c2) =>
             new Complex(c1.re + c2.re, c1.im + c2.im);
         public static Complex operator -(Complex c1, Complex c2) =>
@@ -86,6 +122,9 @@ namespace Complex
             Power(c,putere);
         public static Complex operator /(Complex c1, Complex c2) =>
             Divide(c1, c2);
+        #endregion
+
+        #region Methods
         public static Complex Power(Complex c, int putere)
         {
             Complex aux = c;
@@ -97,6 +136,14 @@ namespace Complex
         public static Complex Multiply(Complex c1,Complex c2)
         {
             return new Complex(c1.re * c2.re - c1.im * c2.im, c1.re * c2.im + c1.im * c2.re);
+        }
+        public static Complex Multiply(Complex c,double d)
+        {
+            return Multiply(c, new Complex(d, 0));
+        }
+        public static Complex Multiply(double d,Complex c)
+        {
+            return Multiply(c, new Complex(d, 0));
         }
         public static Complex Subtract(Complex c1,Complex c2)
         {
@@ -130,11 +177,29 @@ namespace Complex
                     str += im.ToString() + "i";
             return str;
         }
-        public Complex Parse(string str)
+        public static Complex Parse(string str)
         {
-            Complex c=new Complex(str);
-            return c;
+            return new Complex(str);
         }
+        public static double Abs(Complex c)
+        {
+            return Math.Sqrt(c.re * c.re + c.im * c.im);
+        }
+        public bool Equals(Complex c)
+        {
+            if (Real == c.Real && Imag == c.Imag)
+                return true;
+            return false;
+        }
+        public bool Equals(double d)
+        {
+            return re == d;
+        }
+        public bool Equals(string str)
+        {
+            return this.ToString() == (new Complex(str)).ToString();//exista posibilitatea ca str sa contina un + la inceput.
+        }
+        #endregion
 
     }
 }
