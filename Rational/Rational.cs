@@ -108,10 +108,6 @@ namespace Rational
             else
                 return (new Rational(r1 * r2.Invers)).Simplific();
         }
-        public Rational Clone()
-        {
-            return new Rational(this);
-        }
         public override string ToString()
         {
             return a.ToString() + "/" + b.ToString();
