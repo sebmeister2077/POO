@@ -4,6 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
+
 namespace Rational
 {
     public class Rational
@@ -12,7 +13,7 @@ namespace Rational
         #region Contructor
         public Rational()
         { }
-        public Rational(int a, int b)
+        public Rational(int a, int b=1)
         {
             this.a = a;
             if (b == 0)
