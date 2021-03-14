@@ -101,12 +101,7 @@ namespace Robot_Project
         }
         public Target CurrentTarget
         {
-            get {
-                    foreach (var target in targets)
-                        if (currentPlanet.ContainsTarget(target))
-                            return target;
-                return null;//no ore alive targets exists
-            }
+            get {return currentTarget;}
         }
         #endregion
         #region Methods
@@ -137,7 +132,7 @@ namespace Robot_Project
         {
             RefreshPlanet();//its possible the last alive target was on this planet just now
             if(!noMoreTargets)
-            currentTarget=currentPlanet.Lifeforms.First().Key;
+            currentTarget=currentPlanet.Lifeforms.First().Key;//returns the first key(Targer object)
             else
                 Console.WriteLine($"Robot {this.Name} has exterminated all targets on all target planets.");
         }
