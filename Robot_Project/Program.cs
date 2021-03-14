@@ -10,17 +10,20 @@ namespace Robot_Project
     {
         static void Main(string[] args)
         {
-            Planet Earth = new Planet();
+            Planet Earth = new Planet("Earth");
+            Earth.Lifeforms.Add(new Human(), 340);//added 340 Humans to planet Earth
 
             GiantKillerRobot r= new GiantKillerRobot();
             r.Initialize();
             r.EyeLaserIntensity = Intensity.Kill;
-            r.Targets = new HashSet<Target>() { Targets, Animals, Superheroes };//create a new class foreach new item you want to add as a target
+            r.Targets = new HashSet<Target>() { new Human(), Animals, Superheroes };//create a new class foreach new item you want to add as a target
 
             r.TargetPlanets.Add(Earth);//the only implicit planet is Earth
-            while(r.Active&&r.TargetPlanetsContainsLife)
-                if(r.CurrentTarget.IsAlive)
-                    r.
+            while (r.Active && r.TargetPlanetsContainsLife)
+                if (r.CurrentTarget.IsAlive)
+                    r.FireLaserAt(r.CurrentTarget);
+                else
+                    r.AquireNextTarget();
 
             Console.WriteLine(r);
 
