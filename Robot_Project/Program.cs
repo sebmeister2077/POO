@@ -10,6 +10,11 @@ namespace Robot_Project
     {
         static void Main(string[] args)
         {
+            /// <summary>
+            /// Creati un program care sa poata simula un/mai multi roboti care poate 
+            /// fi manipulat in mai multe feluri, de exemplu distrugerea/uciderea unor tinte(eroi,oameni,ticalos) 
+            /// </summary>
+
             Planet Earth = new Planet("Earth");
             Earth.Lifeforms.Add(new Human(), 340);//added 340 Humans to planet Earth
 
