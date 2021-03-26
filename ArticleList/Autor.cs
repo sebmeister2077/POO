@@ -76,5 +76,12 @@ namespace ArticleList
                 sum += autor.ArticlesPublished;
             return sum;
         }
+        public static bool Contains(this Autor[] autors,Autor targetAutor)
+        {
+            foreach (var autor in autors)
+                if (autor == targetAutor)
+                    return true;
+            return false;
+        }
     }
 }

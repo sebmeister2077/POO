@@ -46,7 +46,7 @@ namespace ArticleList
         {
             List<Article> lista = new List<Article>();
             foreach (var article in articleList)
-                if (article.Autor == autor)
+                if (article.Autors.Contains(autor))
                     lista.Add(article);
             return lista;
         }
